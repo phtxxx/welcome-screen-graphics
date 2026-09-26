@@ -45,3 +45,47 @@ export const redeemLicense = createServerFn({ method: 'POST' })
     if (error || !result?.length) throw new Error('Chave inválida, já usada ou vinculada a outro e-mail.');
     return { plan: result[0].plan_name, expiresAt: result[0].valid_until };
   });
+
+
+export const getMyAccount = createServerFn({ method: 'GET' })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    const { data, error } = await context.supabase.rpc('get_my_account');
+    if (error || !data?.length) throw new Error('Não foi possível carregar sua conta.');
+    return data[0];
+  });
+
+export const adminListAccounts = createServerFn({ method: 'GET' })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    const { data: admin, error: roleError } = await context.supabase.rpc('has_role', { _user_id: context.userId, _role: 'admin' });
+    if (roleError || !admin) throw new Error('Acesso não autorizado.');
+    const { data, error } = await context.supabase.rpc('admin_list_accounts');
+    if (error) throw new Error('Não foi possível carregar os usuários.');
+    return data ?? [];
+  });
+
+export const adminUpdateAccount = createServerFn({ method: 'POST' })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: { userId: string; fullName: string; username: string; plan: string; status: string; validUntil: string | null }) => input)
+  .handler(async ({ context, data }) => {
+    const { data: admin, error: roleError } = await context.supabase.rpc('has_role', { _user_id: context.userId, _role: 'admin' });
+    if (roleError || !admin) throw new Error('Acesso não autorizado.');
+    const { error } = await context.supabase.rpc('admin_update_account', {
+      _user_id: data.userId, _full_name: data.fullName, _username: data.username,
+      _plan: data.plan, _status: data.status, _valid_until: data.validUntil,
+    });
+    if (error) throw new Error(error.message || 'Não foi possível atualizar o usuário.');
+    return { ok: true };
+  });
+
+export const adminRevokeLicense = createServerFn({ method: 'POST' })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: { licenseId: string }) => input)
+  .handler(async ({ context, data }) => {
+    const { data: admin, error: roleError } = await context.supabase.rpc('has_role', { _user_id: context.userId, _role: 'admin' });
+    if (roleError || !admin) throw new Error('Acesso não autorizado.');
+    const { error } = await context.supabase.rpc('admin_revoke_license', { _license_id: data.licenseId });
+    if (error) throw new Error(error.message || 'Não foi possível revogar a licença.');
+    return { ok: true };
+  });
