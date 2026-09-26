@@ -156,7 +156,7 @@ function Hero() {
           <img
             src={logoAsset.url}
             alt="PINKBOOST"
-            className="mb-8 h-24 w-auto mix-blend-screen drop-shadow-[0_0_24px_color-mix(in_oklab,var(--color-glow)_60%,transparent)] md:h-28"
+            className="mb-8 h-24 w-auto mix-blend-screen md:h-28"
           />
           <h1 className="font-display text-4xl font-bold uppercase italic leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
             Chega de perder a{" "}
