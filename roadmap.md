@@ -1,0 +1,3 @@
+- [x] Revisar o texto da experiência sem alegar risco zero.
+- [ ] Criar entrada segura, painel administrativo e geração/resgate de chaves.
+- [ ] Integrar Pix real após desbloqueio do provedor de pagamentos e definição dos preços.
