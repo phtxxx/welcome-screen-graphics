@@ -151,7 +151,7 @@ function Hero() {
       <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/60" />
       <div className="hero-grid absolute inset-0" />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-28 sm:px-6">
+      <div className="relative mx-auto w-full max-w-7xl px-4 py-28 sm:px-6">
         <div className="max-w-2xl">
           <img
             src={logoAsset.url}
@@ -186,7 +186,7 @@ function Hero() {
       <a
         href="#experiencia"
         aria-label="Rolar para baixo"
-        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-primary/70 transition-colors hover:text-primary"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-primary/70 transition-colors hover:text-primary"
       >
         <Crosshair className="h-6 w-6 animate-pulse-soft" />
       </a>
