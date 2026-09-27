@@ -14,6 +14,63 @@ export type Database = {
   }
   public: {
     Tables: {
+      customer_accounts: {
+        Row: {
+          activated_at: string | null
+          configs: Json
+          created_at: string
+          created_by: string | null
+          duration_days: number
+          email: string | null
+          full_name: string | null
+          id: string
+          last_seen_at: string | null
+          license_key_hash: string
+          license_prefix: string
+          plan: string
+          status: string
+          updated_at: string
+          username: string | null
+          valid_until: string | null
+        }
+        Insert: {
+          activated_at?: string | null
+          configs?: Json
+          created_at?: string
+          created_by?: string | null
+          duration_days?: number
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          last_seen_at?: string | null
+          license_key_hash: string
+          license_prefix: string
+          plan: string
+          status?: string
+          updated_at?: string
+          username?: string | null
+          valid_until?: string | null
+        }
+        Update: {
+          activated_at?: string | null
+          configs?: Json
+          created_at?: string
+          created_by?: string | null
+          duration_days?: number
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          last_seen_at?: string | null
+          license_key_hash?: string
+          license_prefix?: string
+          plan?: string
+          status?: string
+          updated_at?: string
+          username?: string | null
+          valid_until?: string | null
+        }
+        Relationships: []
+      }
       licenses: {
         Row: {
           created_at: string
