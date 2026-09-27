@@ -8,6 +8,13 @@
       "when": 1790391294302,
       "tag": "0000_create_pinkboost_licenses_and_roles",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1790542459378,
+      "tag": "0001_create_customer_accounts",
+      "breakpoints": true
     }
   ]
 }

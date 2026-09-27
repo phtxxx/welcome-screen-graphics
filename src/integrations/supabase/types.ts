@@ -14,22 +14,61 @@ export type Database = {
   }
   public: {
     Tables: {
-      account_profiles: {
-        Row: { id: string; full_name: string | null; username: string | null; plan: string; status: string; valid_until: string | null; active_license_id: string | null; created_at: string; updated_at: string }
-        Insert: { id: string; full_name?: string | null; username?: string | null; plan?: string; status?: string; valid_until?: string | null; active_license_id?: string | null; created_at?: string; updated_at?: string }
-        Update: { id?: string; full_name?: string | null; username?: string | null; plan?: string; status?: string; valid_until?: string | null; active_license_id?: string | null; created_at?: string; updated_at?: string }
-        Relationships: []
-      }
-      license_events: {
-        Row: { id: string; license_id: string; event_type: string; actor_user_id: string | null; metadata: Json; created_at: string }
-        Insert: { id?: string; license_id: string; event_type: string; actor_user_id?: string | null; metadata?: Json; created_at?: string }
-        Update: { id?: string; license_id?: string; event_type?: string; actor_user_id?: string | null; metadata?: Json; created_at?: string }
-        Relationships: []
-      }
-      audit_logs: {
-        Row: { id: string; actor_user_id: string | null; action: string; target_user_id: string | null; target_license_id: string | null; metadata: Json; created_at: string }
-        Insert: { id?: string; actor_user_id?: string | null; action: string; target_user_id?: string | null; target_license_id?: string | null; metadata?: Json; created_at?: string }
-        Update: { id?: string; actor_user_id?: string | null; action?: string; target_user_id?: string | null; target_license_id?: string | null; metadata?: Json; created_at?: string }
+      customer_accounts: {
+        Row: {
+          activated_at: string | null
+          configs: Json
+          created_at: string
+          created_by: string | null
+          duration_days: number
+          email: string | null
+          full_name: string | null
+          id: string
+          last_seen_at: string | null
+          license_key_hash: string
+          license_prefix: string
+          plan: string
+          status: string
+          updated_at: string
+          username: string | null
+          valid_until: string | null
+        }
+        Insert: {
+          activated_at?: string | null
+          configs?: Json
+          created_at?: string
+          created_by?: string | null
+          duration_days?: number
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          last_seen_at?: string | null
+          license_key_hash: string
+          license_prefix: string
+          plan: string
+          status?: string
+          updated_at?: string
+          username?: string | null
+          valid_until?: string | null
+        }
+        Update: {
+          activated_at?: string | null
+          configs?: Json
+          created_at?: string
+          created_by?: string | null
+          duration_days?: number
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          last_seen_at?: string | null
+          license_key_hash?: string
+          license_prefix?: string
+          plan?: string
+          status?: string
+          updated_at?: string
+          username?: string | null
+          valid_until?: string | null
+        }
         Relationships: []
       }
       licenses: {
@@ -100,26 +139,6 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      get_my_account: {
-        Args: Record<PropertyKey, never>
-        Returns: { user_id: string; full_name: string | null; email: string | null; username: string | null; plan: string; status: string; valid_until: string | null; license_id: string | null; license_prefix: string | null; license_valid: boolean }[]
-      }
-      admin_list_accounts: {
-        Args: Record<PropertyKey, never>
-        Returns: { user_id: string; full_name: string | null; email: string | null; username: string | null; plan: string; status: string; valid_until: string | null; license_id: string | null; license_prefix: string | null; license_status: string | null; created_at: string }[]
-      }
-      admin_update_account: {
-        Args: { _user_id: string; _full_name: string; _username: string; _plan: string; _status: string; _valid_until: string | null }
-        Returns: boolean
-      }
-      admin_revoke_license: {
-        Args: { _license_id: string }
-        Returns: boolean
-      }
-      admin_issue_license: {
-        Args: { _plan: string; _customer_email: string; _key_hash: string; _key_prefix: string; _duration_days: number }
-        Returns: string
-      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]

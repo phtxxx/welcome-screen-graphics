@@ -10,17 +10,15 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as PainelRouteImport } from './routes/painel'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as ClienteRouteImport } from './routes/cliente'
+import { Route as EntrarRouteImport } from './routes/entrar'
+import { Route as PainelRouteImport } from './routes/painel'
+import { Route as ApiPublicV1LicenseRouteImport } from './routes/api/public/v1/license'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PainelRoute = PainelRouteImport.update({
-  id: '/painel',
-  path: '/painel',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -28,35 +26,86 @@ const AdminRoute = AdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ClienteRoute = ClienteRouteImport.update({
+  id: '/cliente',
+  path: '/cliente',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EntrarRoute = EntrarRouteImport.update({
+  id: '/entrar',
+  path: '/entrar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PainelRoute = PainelRouteImport.update({
+  id: '/painel',
+  path: '/painel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicV1LicenseRoute = ApiPublicV1LicenseRouteImport.update({
+  id: '/api/public/v1/license',
+  path: '/api/public/v1/license',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/painel': typeof PainelRoute
   '/admin': typeof AdminRoute
+  '/cliente': typeof ClienteRoute
+  '/entrar': typeof EntrarRoute
+  '/painel': typeof PainelRoute
+  '/api/public/v1/license': typeof ApiPublicV1LicenseRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/painel': typeof PainelRoute
   '/admin': typeof AdminRoute
+  '/cliente': typeof ClienteRoute
+  '/entrar': typeof EntrarRoute
+  '/painel': typeof PainelRoute
+  '/api/public/v1/license': typeof ApiPublicV1LicenseRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/painel': typeof PainelRoute
   '/admin': typeof AdminRoute
+  '/cliente': typeof ClienteRoute
+  '/entrar': typeof EntrarRoute
+  '/painel': typeof PainelRoute
+  '/api/public/v1/license': typeof ApiPublicV1LicenseRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/painel' | '/admin'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/cliente'
+    | '/entrar'
+    | '/painel'
+    | '/api/public/v1/license'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/painel' | '/admin'
-  id: '__root__' | '/' | '/painel' | '/admin'
+  to:
+    | '/'
+    | '/admin'
+    | '/cliente'
+    | '/entrar'
+    | '/painel'
+    | '/api/public/v1/license'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/cliente'
+    | '/entrar'
+    | '/painel'
+    | '/api/public/v1/license'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  PainelRoute: typeof PainelRoute
   AdminRoute: typeof AdminRoute
+  ClienteRoute: typeof ClienteRoute
+  EntrarRoute: typeof EntrarRoute
+  PainelRoute: typeof PainelRoute
+  ApiPublicV1LicenseRoute: typeof ApiPublicV1LicenseRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -68,13 +117,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/painel': {
-      id: '/painel'
-      path: '/painel'
-      fullPath: '/painel'
-      preLoaderRoute: typeof PainelRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/admin': {
       id: '/admin'
       path: '/admin'
@@ -82,13 +124,44 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cliente': {
+      id: '/cliente'
+      path: '/cliente'
+      fullPath: '/cliente'
+      preLoaderRoute: typeof ClienteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/entrar': {
+      id: '/entrar'
+      path: '/entrar'
+      fullPath: '/entrar'
+      preLoaderRoute: typeof EntrarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/painel': {
+      id: '/painel'
+      path: '/painel'
+      fullPath: '/painel'
+      preLoaderRoute: typeof PainelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/v1/license': {
+      id: '/api/public/v1/license'
+      path: '/api/public/v1/license'
+      fullPath: '/api/public/v1/license'
+      preLoaderRoute: typeof ApiPublicV1LicenseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  PainelRoute: PainelRoute,
   AdminRoute: AdminRoute,
+  ClienteRoute: ClienteRoute,
+  EntrarRoute: EntrarRoute,
+  PainelRoute: PainelRoute,
+  ApiPublicV1LicenseRoute: ApiPublicV1LicenseRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
