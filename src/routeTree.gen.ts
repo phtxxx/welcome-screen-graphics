@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as PainelRouteImport } from './routes/painel'
+import { Route as ApiPublicV1LicenseRouteImport } from './routes/api/public/v1/license'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +29,44 @@ const PainelRoute = PainelRouteImport.update({
   path: '/painel',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicV1LicenseRoute = ApiPublicV1LicenseRouteImport.update({
+  id: '/api/public/v1/license',
+  path: '/api/public/v1/license',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/painel': typeof PainelRoute
+  '/api/public/v1/license': typeof ApiPublicV1LicenseRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/painel': typeof PainelRoute
+  '/api/public/v1/license': typeof ApiPublicV1LicenseRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/painel': typeof PainelRoute
+  '/api/public/v1/license': typeof ApiPublicV1LicenseRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/painel'
+  fullPaths: '/' | '/admin' | '/painel' | '/api/public/v1/license'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/painel'
-  id: '__root__' | '/' | '/admin' | '/painel'
+  to: '/' | '/admin' | '/painel' | '/api/public/v1/license'
+  id: '__root__' | '/' | '/admin' | '/painel' | '/api/public/v1/license'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
   PainelRoute: typeof PainelRoute
+  ApiPublicV1LicenseRoute: typeof ApiPublicV1LicenseRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +92,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PainelRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/v1/license': {
+      id: '/api/public/v1/license'
+      path: '/api/public/v1/license'
+      fullPath: '/api/public/v1/license'
+      preLoaderRoute: typeof ApiPublicV1LicenseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
   PainelRoute: PainelRoute,
+  ApiPublicV1LicenseRoute: ApiPublicV1LicenseRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
