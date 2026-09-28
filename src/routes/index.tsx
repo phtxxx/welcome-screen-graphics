@@ -417,11 +417,11 @@ function Features() {
 
 function Plans() {
   const plans = [
-    { name: "Teste", duration: "7 dias", description: "Experimente o PINKBOOST.", highlight: false },
-    { name: "Start", duration: "30 dias", description: "Para começar.", highlight: false },
-    { name: "Pro", duration: "90 dias", description: "Mais tempo para aproveitar.", highlight: true },
-    { name: "Elite", duration: "120 dias", description: "Para jogadores frequentes.", highlight: false },
-    { name: "Anual", duration: "365 dias", description: "Acesso durante todo o ano.", highlight: false },
+    { name: "Teste", duration: "7 dias", price: "R$ 9,90", description: "Experimente o PINKBOOST.", highlight: false },
+    { name: "Start", duration: "30 dias", price: "R$ 29,90", description: "Para começar.", highlight: false },
+    { name: "Pro", duration: "90 dias", price: "R$ 69,90", description: "Mais tempo para aproveitar.", highlight: true },
+    { name: "Elite", duration: "120 dias", price: "R$ 89,90", description: "Para jogadores frequentes.", highlight: false },
+    { name: "Anual", duration: "365 dias", price: "R$ 199,90", description: "Acesso durante todo o ano.", highlight: false },
   ];
 
   return (
@@ -454,8 +454,8 @@ function Plans() {
               <p className="mt-4 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
                 A partir de
               </p>
-              <p className="mt-1 font-display text-xl font-bold text-foreground">
-                Sob consulta
+              <p className="mt-1 font-display text-2xl font-bold text-foreground">
+                {plan.price}
               </p>
               <p className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
                 {plan.description}
