@@ -122,7 +122,7 @@ function Header() {
           <a href="#planos" className="transition-colors hover:text-primary">
             Planos
           </a>
-          <a href="/painel" className="transition-colors hover:text-primary">
+          <a href="/cliente" className="transition-colors hover:text-primary">
             Minha conta
           </a>
           <a href="#suporte" className="transition-colors hover:text-primary">
