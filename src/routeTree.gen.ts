@@ -14,6 +14,7 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as ClienteRouteImport } from './routes/cliente'
 import { Route as EntrarRouteImport } from './routes/entrar'
 import { Route as PainelRouteImport } from './routes/painel'
+import { Route as PagamentoRouteImport } from './routes/pagamento'
 import { Route as ApiPublicV1LicenseRouteImport } from './routes/api/public/v1/license'
 
 const IndexRoute = IndexRouteImport.update({
@@ -36,6 +37,11 @@ const EntrarRoute = EntrarRouteImport.update({
   path: '/entrar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PagamentoRoute = PagamentoRouteImport.update({
+  id: '/pagamento',
+  path: '/pagamento',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PainelRoute = PainelRouteImport.update({
   id: '/painel',
   path: '/painel',
@@ -53,6 +59,8 @@ export interface FileRoutesByFullPath {
   '/cliente': typeof ClienteRoute
   '/entrar': typeof EntrarRoute
   '/painel': typeof PainelRoute
+  '/pagamento': typeof PagamentoRoute
+  '/pagamento': typeof PagamentoRoute
   '/api/public/v1/license': typeof ApiPublicV1LicenseRoute
 }
 export interface FileRoutesByTo {
@@ -145,6 +153,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PainelRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pagamento': {
+      id: '/pagamento'
+      path: '/pagamento'
+      fullPath: '/pagamento'
+      preLoaderRoute: typeof PagamentoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/v1/license': {
       id: '/api/public/v1/license'
       path: '/api/public/v1/license'
@@ -161,6 +176,7 @@ const rootRouteChildren: RootRouteChildren = {
   ClienteRoute: ClienteRoute,
   EntrarRoute: EntrarRoute,
   PainelRoute: PainelRoute,
+  PagamentoRoute: PagamentoRoute,
   ApiPublicV1LicenseRoute: ApiPublicV1LicenseRoute,
 }
 export const routeTree = rootRouteImport
