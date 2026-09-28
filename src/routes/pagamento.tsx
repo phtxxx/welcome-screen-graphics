@@ -13,7 +13,7 @@ export const Route = createFileRoute("/pagamento")({
   component: PaymentPage,
 });
 
-const PIX_KEY = "CONFIGURE_SUA_CHAVE_PIX";
+const PIX_KEY = "04588058908";
 const MERCHANT_NAME = "PINKBOOST";
 const MERCHANT_CITY = "BALNEARIO CAMBORIU";
 
