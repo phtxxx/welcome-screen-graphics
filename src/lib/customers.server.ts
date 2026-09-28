@@ -33,7 +33,7 @@ export async function findByKey(key: string) {
   const { supabaseAdmin } = await import('@/integrations/supabase/client.server');
   const { data } = await supabaseAdmin.from('customer_accounts').select('*').eq('license_key_hash', hashKey(k)).maybeSingle();
   if (!data) return null;
-  const patch: Record<string, string> = { last_seen_at: new Date().toISOString() };
+  const patch: { last_seen_at: string; activated_at?: string; valid_until?: string } = { last_seen_at: new Date().toISOString() };
   if (!data.activated_at && data.status === 'active') {
     const now = new Date();
     patch.activated_at = now.toISOString();

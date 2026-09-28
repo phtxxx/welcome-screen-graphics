@@ -38,7 +38,7 @@ export const adminCreateKey = createServerFn({ method: 'POST' })
     await assertAdmin(context);
     const key = generateKey();
     const { error } = await context.supabase.from('customer_accounts').insert({
-      plan: data.plan, duration_days: PLAN_DAYS[data.plan], full_name: data.name || null, email: data.email || null,
+      plan: data.plan, duration_days: PLAN_DAYS[data.plan] ?? 30, full_name: data.name || null, email: data.email || null,
       license_key_hash: hashKey(key), license_prefix: key.slice(0, 11), created_by: context.userId,
     });
     if (error) throw new Error('Não foi possível gerar a key.');
